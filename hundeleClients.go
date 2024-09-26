@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"fmt"
 	"net"
 	"os"
 	"strings"
@@ -14,9 +15,9 @@ func handleClient(conn net.Conn) {
 		return
 	}
 	clientAddr := conn.RemoteAddr().String()
-
+	fmt.Println(clientAddr)
 	// linuxLogo
-	linuxLogo, _ := os.ReadFile("linuxLogo.txt")
+	linuxLogo, _ := os.ReadFile("txtFiles/linuxLogo.txt")
 	conn.Write(linuxLogo)
 
 	for !isValidName(clients[clientAddr].Name) {
@@ -37,7 +38,7 @@ func handleClient(conn net.Conn) {
 	reader := bufio.NewReader(conn)
 	// enter message
 
-	writeToClients(" has joined our chat...\n", clientAddr, false)
+	writeToClients(" has joined the chat...\n", clientAddr, false)
 
 	clients[clientAddr].Conn.Write([]byte(prevMessage()))
 
@@ -53,7 +54,7 @@ func handleClient(conn net.Conn) {
 		message, err := reader.ReadString('\n')
 		if err != nil {
 			// leave message
-			writeToClients(" has left our chat...\n", clientAddr, false)
+			writeToClients(" has left the chat...\n", clientAddr, false)
 			Status()
 			delete(clients, clientAddr)
 			// fmt.Printf("Client disconnected: %s\n", clientAddr)

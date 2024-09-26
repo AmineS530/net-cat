@@ -8,28 +8,28 @@ import (
 	"time"
 )
 
+var port = ":8989"
+
 func main() {
-	port := ":8989"
 	if len(os.Args) == 2 {
 		_, e := strconv.Atoi(os.Args[1])
-		if e == nil {
-			port = ":" + os.Args[1]
-		} else {
+		if e != nil {
 			fmt.Println("[USAGE]: ./TCPChat $port")
 			return
 		}
+		port = ":" + os.Args[1]
 	} else if len(os.Args) > 2 {
 		fmt.Println("[USAGE]: ./TCPChat $port")
 		return
 	}
 
 	// turncate the prev message file
-	file, _ := os.OpenFile("prevMessages.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0o644)
+	file, _ := os.OpenFile("txtFiles/messageHistory.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0o644)
 	file.Truncate(0)
 	///save start of new chat with time
 	now := time.Now()
 	formattedTime := now.Format("2006-01-02 15:04:05")
-	SaveToFile("logs.txt", "------------------------new chat started at ["+formattedTime+"]--------------------------------\n\n\n")
+	SaveToFile("txtFiles/logs.txt", "------------------------new chat started at ["+formattedTime+"]--------------------------------\n\n\n")
 
 	// Start TCP server
 	listener, err := net.Listen("tcp", port)

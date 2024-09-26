@@ -26,13 +26,12 @@ func geneateMessage(name string) string {
 func writeToClients(message string, clientAddr string, bl bool) {
 	if bl {
 		message = "\n" + geneateMessage(clients[clientAddr].Name) + message
-		SaveToFile("prevMessages.txt", message[1:])
+		SaveToFile("txtFiles/messageHistory.txt", message[1:])
 	} else {
 		message = "\n" + clients[clientAddr].Name + message
-		SaveToFile("logs.txt", geneateMessage("Client Name: "+clients[clientAddr].Name+" || Client Adress "+clientAddr)+message[1:])
+		SaveToFile("txtFiles/logs.txt", geneateMessage("Client Name: "+clients[clientAddr].Name+" || Client Adress "+clientAddr)+message[1:])
 	}
 
-	
 	loopAll(message, clientAddr)
 }
 

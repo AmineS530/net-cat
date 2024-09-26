@@ -9,7 +9,7 @@ func SaveToFile(name, message string) {
 }
 
 func prevMessage() string {
-	data, _ := os.ReadFile("prevMessages.txt")
+	data, _ := os.ReadFile("txtFiles/messageHistory.txt")
 	return string(data)
 }
 
