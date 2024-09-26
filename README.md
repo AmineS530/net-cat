@@ -187,7 +187,7 @@ The Net-Cat project includes functionality to save chat history and logs. Hereâ€
 
 Meet the team behind Net-Cat:
 
-- [Mohemad Serraf]
+- [Mohemad] !!
 - [ZED](https://github.com/0xZED88)
 - [Amine Habchi](https://github.com/aminehabchi)
 
