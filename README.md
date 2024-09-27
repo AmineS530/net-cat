@@ -189,7 +189,7 @@ Meet the team behind Net-Cat:
 
 - [Mohemad] !!
 - [ZED](https://github.com/0xZED88)
-- [Amine Habchi](https://github.com/aminehabchi)
+- [Amine](https://github.com/AmineS530)
 
 
 
