@@ -47,9 +47,17 @@ The primary objective of this project is to create a chat application with the f
     ```bash
     go run . [port]
     ```
+    or
+    ```bash
+    make [port]
+    ```
    Replace `[port]` with the port number you wish to use (default is 8989 if not specified). For example:
     ```bash
     go run . 2525
+    ```
+    or
+    ```bash
+    make 2525
     ```
 
 2. **Connect a client**:
@@ -100,8 +108,7 @@ _)      \.___.,|     .'
 **Client2 (AMINE):**
 
 ```
-amine-MacBook-Air:simpleTCPChat ybokina$ nc localhost 2525
-amine-MacBook-Air:simpleTCPChat ybokina$ nc localhost 2525
+>:3 ‚ùØ nc localhost 2525
 Welcome to TCP-Chat!
          _nnnn_
         dGGGGMMb
@@ -180,7 +187,7 @@ The Net-Cat project includes functionality to save chat history and logs. Here‚Ä
 
 ### Message History
 
-- **History File**: `prevMessages.txt`
+- **History File**: `messageHistory.txt`
 - **Description**: This file stores all previous messages sent in the chat. When a new client joins, they receive the entire chat history from this file, ensuring they are updated with all past communications.
 
 ---
