@@ -15,7 +15,7 @@ type Client struct {
 var (
 	clients         = make(map[string]Client)    // Map to store connected clients
 	clientsMutex    sync.Mutex                   // Mutex to synchronize access to clients map
-	cooldownTime    = 1 * time.Second            // Cooldown duration
+	cooldownTime    = 1200 * time.Millisecond    // Cooldown duration
 	lastMessageTime = make(map[string]time.Time) // Track last message time per client
 )
 
@@ -63,7 +63,9 @@ func listClients() {
 	defer clientsMutex.Unlock()
 
 	fmt.Println("Connected clients:")
+	id := 0
 	for addr := range clients {
-		fmt.Println(addr)
+		fmt.Printf("[%d] username: %s | Client Address: %s \n", +id, clients[addr].Name, addr)
+		id++
 	}
 }

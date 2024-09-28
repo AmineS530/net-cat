@@ -1,25 +1,19 @@
-EXE=TCPChat
+NAME=tcpChat
 
 PORT=$(firstword $(MAKECMDGOALS))
 
 all: run
 	
 build:
-	@echo "\033[1;32mBuilding $(EXE)...\033[0m"
-	@go build -o $(EXE) .
+	@echo "\033[1;32mBuilding $(NAME)...\033[0m"
+	@go build -o $(NAME) .
 
 run: build
-	@echo "\033[1;32mRunning $(EXE) on port $(PORT)...\033[0m"
-	@./$(EXE) $(PORT)
+	@echo "\033[1;32mRunning $(NAME) on port $(PORT)...\033[0m"
+	@./$(NAME) $(PORT)
 
-$(PORT): build
-	@echo "\033[1;32mRunning $(EXE) on port $(PORT)...\033[0m"
-	@./$(EXE) $(PORT)
+$(PORT): run
 
 clean:
 	@echo "\033[1;32mCleaning up...\033[0m"
-	@rm -f $(EXE)
-	@clear
-
-# Prevent make from complaining about a missing target when using arguments like 8080#%:
-# #@:
+	@rm -fr $(NAME)

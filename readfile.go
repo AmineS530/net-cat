@@ -20,7 +20,7 @@ func IsNameTaken(name string) bool {
 	defer clientsMutex.Unlock()
 	for _, client := range clients {
 		if client.Name == name {
-			return true // Name is already taken
+			return true // Name is taken
 		}
 	}
 	return false
@@ -28,7 +28,7 @@ func IsNameTaken(name string) bool {
 
 func IsPrint(str string) bool {
 	for i := 0; i < len(str); i++ {
-		if !(rune(str[i]) >= 32 && rune(str[i]) <= 126) {
+		if !(rune(str[i]) >= 32 && rune(str[i]) <= 126 || str[i] == 10) {
 			return false
 		}
 	}

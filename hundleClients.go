@@ -30,7 +30,7 @@ func handleClient(conn net.Conn) {
 		name = strings.TrimSpace(name)
 		if IsNameTaken(name) {
 			conn.Write([]byte("Name already taken, please choose another.\n"))
-		} else if IsPrint(name) && !IsNameTaken(name) {
+		} else if len(name) > 0 && IsPrint(name) && !IsNameTaken(name) {
 			clientsMutex.Lock()
 			clients[clientAddr] = Client{Conn: conn, Name: name}
 			clientsMutex.Unlock()
@@ -53,7 +53,6 @@ func handleClient(conn net.Conn) {
 		}
 		bl = true
 		// Read data until newline or EOF (you can modify the delimiter if needed)
-
 		message, err := reader.ReadString('\n')
 		if err != nil {
 			writeToClients(" has left the chat...\n", clientAddr, false)
@@ -63,7 +62,7 @@ func handleClient(conn net.Conn) {
 		}
 
 		if len(message) == 1 {
-			conn.Write([]byte(geneateMessage(clients[clientAddr].Name)))
+			conn.Write([]byte("Empty message was not sent\n" + geneateMessage(clients[clientAddr].Name)))
 			bl = false
 		} else {
 			clientsMutex.Lock()
@@ -71,7 +70,7 @@ func handleClient(conn net.Conn) {
 			if !ok || time.Since(lastSentTime) >= cooldownTime {
 				// Update last message time
 				lastMessageTime[clientAddr] = time.Now()
-				if !IsPrint(message) && !strings.HasPrefix(message, "\033[") {
+				if IsPrint(message) && !strings.HasPrefix(message, "\033[") && !(len(strings.TrimSpace(message)) == 0) {
 					writeToClients(message, clientAddr, true)
 				} else {
 					conn.Write([]byte("Invalid input. Please try again.\n" +
