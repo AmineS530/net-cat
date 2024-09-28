@@ -57,8 +57,11 @@ func main() {
 	for {
 		var input string
 		fmt.Scanln(&input)
-		if input == "list" {
-			listClients() // List clients when the "list" command is entered
+		switch input {
+		case "list":
+			listClients() 
+		case "kick":
+			kickClient()
 		}
 	}
 }

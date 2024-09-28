@@ -69,3 +69,29 @@ func listClients() {
 		id++
 	}
 }
+
+func kickClient() {
+	listClients()
+	fmt.Print("Enter the username of the client to kick: ")
+	var username string
+	fmt.Scanln(&username)
+
+	var addrToKick string
+	for addr, client := range clients {
+		if client.Name == username {
+			addrToKick = addr
+			client.Conn.Write([]byte("You have been kicked from the chat.\n"))
+			break
+		}
+	}
+
+	if addrToKick != "" {
+		// Close the client's connection
+		clients[addrToKick].Conn.Close()
+		delete(clients, addrToKick)
+		writeToClients(fmt.Sprintf("%s was kicked from the chat...\n", username), "", false)
+		fmt.Printf("Kicked client: %s\n", username)
+	} else {
+		fmt.Println("Client not found.")
+	}
+}
