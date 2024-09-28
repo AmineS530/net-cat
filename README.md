@@ -1,4 +1,4 @@
-# Net-Cat
+# Net-Cat Server-client
 
 ## Overview
 
@@ -27,19 +27,13 @@ The primary objective of this project is to create a chat application with the f
 
 ## Setup and Installation
 
-1. **Clone the repository**:
+- **Clone the repository**:
     ```bash
-    git clone https://github.com/0xZED88/net-cat.git
+    git clone <link> net-cat
     cd net-cat
     ```
 
-2. **Ensure you have Go installed**. You can download it from [the official Go website](https://golang.org/dl/).
-
-
-3. **Build the project** (if necessary):
-    ```bash
-    go build -o TCPChat
-    ```
+- **Ensure you have Go installed**. You can download it from [the official Go website](https://golang.org/dl/).
 
 ## Usage
 
@@ -140,7 +134,7 @@ _)      \.___.,|     .'
 
 ```
 
-**Client3 (Mohemad):**
+**Client3 (Mohamed):**
 ```
 Welcome to TCP-Chat!
          _nnnn_
@@ -192,14 +186,8 @@ The Net-Cat project includes functionality to save chat history and logs. Hereâ€
 
 ---
 
-Meet the team behind Net-Cat:
+Net-Cat Group:
 
-- [Mohemad] !!
-- [ZED](https://github.com/0xZED88)
-- [Amine](https://github.com/AmineS530)
-
-
-
-## Contributing
-
-We welcome contributions to the Net-Cat project! Whether you're fixing bugs, adding new features, or improving documentation, your contributions are valuable to us.
+#### asadik |[Amine](https://github.com/AmineS530)|
+#### mtawil |[Mohamed](https://github.com/twlmed212)|
+#### zzitan |[ZED](https://github.com/0xZED88)|
