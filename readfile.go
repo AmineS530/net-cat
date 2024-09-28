@@ -1,6 +1,8 @@
 package main
 
-import "os"
+import (
+	"os"
+)
 
 func SaveToFile(name, message string) {
 	file, _ := os.OpenFile(name, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0o644)
@@ -13,11 +15,22 @@ func prevMessage() string {
 	return string(data)
 }
 
-func isValidName(name string) bool {
-	for i := 0; i < len(name); i++ {
-		if name[i] > 32 {
-			return true
+func IsNameTaken(name string) bool {
+	clientsMutex.Lock()
+	defer clientsMutex.Unlock()
+	for _, client := range clients {
+		if client.Name == name {
+			return true // Name is already taken
 		}
 	}
 	return false
+}
+
+func IsPrint(str string) bool {
+	for i := 0; i < len(str); i++ {
+		if !(rune(str[i]) >= 32 && rune(str[i]) <= 126) {
+			return false
+		}
+	}
+	return true
 }

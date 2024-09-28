@@ -13,8 +13,10 @@ type Client struct {
 }
 
 var (
-	clients      = make(map[string]Client) // Map to store connected clients
-	clientsMutex sync.Mutex                // Mutex to synchronize access to clients map
+	clients         = make(map[string]Client)    // Map to store connected clients
+	clientsMutex    sync.Mutex                   // Mutex to synchronize access to clients map
+	cooldownTime    = 1 * time.Second            // Cooldown duration
+	lastMessageTime = make(map[string]time.Time) // Track last message time per client
 )
 
 func geneateMessage(name string) string {

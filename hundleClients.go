@@ -2,10 +2,10 @@ package main
 
 import (
 	"bufio"
-	"fmt"
 	"net"
 	"os"
 	"strings"
+	"time"
 )
 
 func handleClient(conn net.Conn) {
@@ -15,12 +15,11 @@ func handleClient(conn net.Conn) {
 		return
 	}
 	clientAddr := conn.RemoteAddr().String()
-	fmt.Println(clientAddr)
 	// linuxLogo
 	linuxLogo, _ := os.ReadFile("txtFiles/linuxLogo.txt")
 	conn.Write(linuxLogo)
 
-	for !isValidName(clients[clientAddr].Name) {
+	for {
 		// read name
 		conn.Write([]byte("[ENTER YOUR NAME]: "))
 		reader := bufio.NewReader(conn)
@@ -28,15 +27,19 @@ func handleClient(conn net.Conn) {
 		if err != nil {
 			return
 		}
-		// name = name[:len(name)-1]
 		name = strings.TrimSpace(name)
-		clientsMutex.Lock()
-		clients[clientAddr] = Client{Conn: conn, Name: name}
-		clientsMutex.Unlock()
+		if IsNameTaken(name) {
+			conn.Write([]byte("Name already taken, please choose another.\n"))
+		} else if IsPrint(name) && !IsNameTaken(name) {
+			clientsMutex.Lock()
+			clients[clientAddr] = Client{Conn: conn, Name: name}
+			clientsMutex.Unlock()
+			break
+		} else {
+			conn.Write([]byte("Please enter a valid name.\n"))
+		}
 	}
-	// fmt.Printf("Client connected: %s\n", clientAddr)
 	reader := bufio.NewReader(conn)
-	// enter message
 
 	writeToClients(" has joined the chat...\n", clientAddr, false)
 
@@ -53,30 +56,36 @@ func handleClient(conn net.Conn) {
 
 		message, err := reader.ReadString('\n')
 		if err != nil {
-			// leave message
 			writeToClients(" has left the chat...\n", clientAddr, false)
 			Status()
 			delete(clients, clientAddr)
-			// fmt.Printf("Client disconnected: %s\n", clientAddr)
-			break // Exit loop if the client disconnects or an error occurs
+			break // Exit loop if the client disconnects
 		}
 
-		// Process the received message (remove newline characters if necessary)
-
-		// send message toclients
-
 		if len(message) == 1 {
-			// fmt.Printf("Received message from %s: empty message\n", clients[clientAddr].Name)
 			conn.Write([]byte(geneateMessage(clients[clientAddr].Name)))
 			bl = false
 		} else {
-			// fmt.Printf("Received message from %s: %s\n", clientAddr, message)
 			clientsMutex.Lock()
-			writeToClients(message, clientAddr, true)
+			lastSentTime, ok := lastMessageTime[clientAddr]
+			if !ok || time.Since(lastSentTime) >= cooldownTime {
+				// Update last message time
+				lastMessageTime[clientAddr] = time.Now()
+				if !IsPrint(message) && !strings.HasPrefix(message, "\033[") {
+					writeToClients(message, clientAddr, true)
+				} else {
+					conn.Write([]byte("Invalid input. Please try again.\n" +
+						geneateMessage(clients[clientAddr].Name)))
+					bl = false
+				}
+			} else {
+				conn.Write([]byte("You are sending messages too quickly. Please wait a moment.\n" +
+					geneateMessage(clients[clientAddr].Name)))
+				bl = false
+			}
 			clientsMutex.Unlock()
 		}
 	}
-
 	// Remove client from the map when they disconnect
 	clientsMutex.Lock()
 	delete(clients, clientAddr)
