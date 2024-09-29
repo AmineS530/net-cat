@@ -3,52 +3,40 @@ package main
 import (
 	"fmt"
 	"net"
-	"os"
-	"time"
+
+	netcat "main/goFiles"
 )
 
-var port = GetPort()
+func init() {
+	netcat.ClearMessageHistory()
+	netcat.SaveNewChatLog()
+}
 
 func main() {
-	// turncate the prev message file
-	file, _ := os.OpenFile("txtFiles/messageHistory.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0o644)
-	file.Truncate(0)
-	///save start of new chat with time
-	now := time.Now()
-	formattedTime := now.Format("2006-01-02 15:04:05")
-	SaveToFile("txtFiles/logs.txt", "------------------------new chat started at ["+formattedTime+"]--------------------------------\n\n\n")
-
-	// Start TCP server
-	listener, err := net.Listen("tcp", port)
+	// Start the TCP server and handle errors
+	listener, err := netcat.StartTCPServer()
 	if err != nil {
-		fmt.Println("Error starting TCP server:", err)
-		return
+		fmt.Println("Failed to start server:", err)
+		return // Exit if the server couldn't start
 	}
-	defer listener.Close()
+	defer listener.Close() // Close listener when the program exits
 
-	fmt.Println("Listening on the Port: ", port[1:])
+	handleCommands(listener)
+}
 
-	// Accept connections
-	go func() {
-		for {
-			conn, err := listener.Accept()
-			if err != nil {
-				fmt.Println("Error accepting connection:", err)
-				continue
-			}
-			go handleClient(conn)
-		}
-	}()
-
-	// Periodically list connected clients (optional)
+// Handles user input commands in a loop
+func handleCommands(listener net.Listener) {
 	for {
 		var input string
 		fmt.Scanln(&input)
 		switch input {
 		case "list":
-			listClients()
+			netcat.ListClients()
 		case "kick":
-			kickClient()
+			netcat.KickClient()
+		case "kill":
+			netcat.KillServer(listener)
+			return
 		}
 	}
 }

@@ -263,3 +263,109 @@
 [2024-09-29 14:20:41][Client Name: klvghj || Client Adress 127.0.0.1:48754]:klvghj has joined the chat...
 [2024-09-29 14:20:58][Client Name: klvghj || Client Adress 127.0.0.1:48754]:klvghj has left the chat...
 [2024-09-29 14:20:58][Client Name:  || Client Adress ]:klvghj was kicked from the chat...
+------------------------new chat started at [2024-09-29 14:43:25]--------------------------------
+
+
+[2024-09-29 14:43:35][Client Name: shrek || Client Adress 127.0.0.1:41842]:shrek has joined the chat...
+------------------------new chat started at [2024-09-29 14:45:58]--------------------------------
+
+
+[2024-09-29 14:46:04][Client Name: pepemaster || Client Adress 127.0.0.1:56102]:pepemaster has joined the chat...
+------------------------new chat started at [2024-09-29 14:46:50]--------------------------------
+
+
+[2024-09-29 14:46:55][Client Name: shkret || Client Adress 127.0.0.1:59042]:shkret has joined the chat...
+[2024-09-29 14:47:56][Client Name: shkret || Client Adress 127.0.0.1:59042]:shkret has left the chat...
+[2024-09-29 14:47:56][Client Name:  || Client Adress ]:shkret was kicked from the chat...
+------------------------new chat started at [2024-09-29 14:49:28]--------------------------------
+
+
+------------------------new chat started in port :6969 at [2024-09-29 14:53:41]--------------------------------
+
+
+------------------------new chat started in port :6969 at [2024-09-29 14:53:54]--------------------------------
+
+
+------------------------new chat started in port :6969 at [2024-09-29 14:54:29]--------------------------------
+
+
+------------------------new chat started in port :6969 at [2024-09-29 14:54:44]--------------------------------
+
+
+------------------------new chat started at [2024-09-29 14:55:45]--------------------------------
+
+
+------------------------new chat started at [2024-09-29 14:56:19]--------------------------------
+
+
+------------------------new chat started at [2024-09-29 14:59:56]--------------------------------
+
+
+[2024-09-29 14:59:56][Client Name: dasd || Client Adress 127.0.0.1:60716]:dasd has joined the chat...
+------------------------new chat started at [2024-09-29 15:05:44]--------------------------------
+
+
+[2024-09-29 15:05:44][Client Name: jhkhg || Client Adress 127.0.0.1:53066]:jhkhg has joined the chat...
+[2024-09-29 15:05:44][Client Name:  || Client Adress ]:Server is shutting down...
+------------------------new chat started at [2024-09-29 15:15:56]--------------------------------
+
+
+[2024-09-29 15:15:56][Client Name: 54 || Client Adress 127.0.0.1:58352]:54 has joined the chat...
+[2024-09-29 15:15:56][Client Name: 54 || Client Adress 127.0.0.1:58352]:54 has left the chat...
+[2024-09-29 15:15:56][Client Name:  || Client Adress ]:54 was kicked from the chat...
+[2024-09-29 15:15:56][Client Name:  || Client Adress ]:Server will shut down in 10 seconds...
+------------------------new chat started at [2024-09-29 15:18:02]--------------------------------
+
+
+------------------------new chat started at [2024-09-29 15:18:41]--------------------------------
+
+
+[2024-09-29 15:18:41][Client Name: hjkh || Client Adress 127.0.0.1:39210]:hjkh has joined the chat...
+[2024-09-29 15:18:41][Client Name:  || Client Adress ]:Server will shut down in 10 seconds...
+------------------------new chat started at [2024-09-29 15:20:02]--------------------------------
+
+
+[2024-09-29 15:20:02][Client Name: rgffgj || Client Adress 127.0.0.1:38848]:rgffgj has joined the chat...
+
+[2024-09-29 15:20:02][Client Name:  || Client Adress ]:Server will shut down in 10 seconds...
+
+------------------------new chat started at [2024-09-29 15:21:27]--------------------------------
+
+
+[2024-09-29 15:21:27][Client Name: lk;j || Client Adress 127.0.0.1:57064]:lk;j has joined the chat...
+
+[2024-09-29 15:21:27][Client Name: kk || Client Adress 127.0.0.1:60050]:kk has joined the chat...
+
+------------------------new chat started at [2024-09-29 15:22:28]--------------------------------
+
+
+[2024-09-29 15:22:28][Client Name: jghjg || Client Adress 127.0.0.1:33936]:jghjg has joined the chat...
+[2024-09-29 15:22:28][Client Name: jhkh || Client Adress 127.0.0.1:33948]:jhkh has joined the chat...
+------------------------new chat started at [2024-09-29 15:23:20]--------------------------------
+
+
+[2024-09-29 15:23:20][Client Name: ghfgh || Client Adress 127.0.0.1:46744]:ghfgh has joined the chat...
+[2024-09-29 15:23:20][Client Name: ghfg || Client Adress 127.0.0.1:46756]:ghfg has joined the chat...
+------------------------new chat started at [2024-09-29 15:24:17]--------------------------------
+
+
+------------------------new chat started at [2024-09-29 15:24:19]--------------------------------
+
+
+[2024-09-29 15:24:17][Client Name: ii || Client Adress 127.0.0.1:55948]:ii has joined the chat...
+[2024-09-29 15:24:17][Client Name: iiki || Client Adress 127.0.0.1:51210]:iiki has joined the chat...
+[2024-09-29 15:24:17][Client Name: ii || Client Adress 127.0.0.1:55948]:ii has left the chat...
+------------------------new chat started at [2024-09-29 15:26:20]--------------------------------
+
+
+------------------------new chat started at [2024-09-29 15:31:04]--------------------------------
+
+
+------------------------new chat started at [2024-09-29 15:31:08]--------------------------------
+
+
+------------------------new chat started at [2024-09-29 15:31:10]--------------------------------
+
+
+[2024-09-29 15:31:04][Client Name: khjh || Client Adress 127.0.0.1:57334]:khjh has joined the chat...
+[2024-09-29 15:31:04][Client Name:  || Client Adress ]:Server will shut down in 10 seconds...

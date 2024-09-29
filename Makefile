@@ -1,4 +1,4 @@
-NAME=tcpChat
+NAME=TCPChat
 
 PORT=$(firstword $(filter-out all build run clean,$(MAKECMDGOALS)))
 

@@ -1,8 +1,21 @@
-package main
+package netcat
 
 import (
 	"os"
+	"time"
 )
+
+// Clears the previous message file by truncating it
+func ClearMessageHistory() {
+	file, _ := os.OpenFile("txtFiles/messageHistory.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0o644)
+	file.Truncate(0)
+}
+
+// Saves the start of a new chat log with the current time
+func SaveNewChatLog() {
+	formattedTime := time.Now().Format("2006-01-02 15:04:05")
+	SaveToFile("txtFiles/logs.txt", "------------------------new chat started at ["+formattedTime+"]--------------------------------\n\n\n")
+}
 
 func SaveToFile(name, message string) {
 	file, _ := os.OpenFile(name, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0o644)

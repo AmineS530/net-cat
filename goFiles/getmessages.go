@@ -1,4 +1,4 @@
-package main
+package netcat
 
 import (
 	"fmt"
@@ -15,13 +15,13 @@ type Client struct {
 var (
 	clients         = make(map[string]Client)    // Map to store connected clients
 	clientsMutex    sync.Mutex                   // Mutex to synchronize access to clients map
-	cooldownTime    = 1200 * time.Millisecond    // Cooldown duration
+	cooldownTime    = 1500 * time.Millisecond    // Cooldown duration
 	lastMessageTime = make(map[string]time.Time) // Track last message time per client
+	now             = time.Now()
+	formattedTime   = now.Format("2006-01-02 15:04:05")
 )
 
 func geneateMessage(name string) string {
-	now := time.Now()
-	formattedTime := now.Format("2006-01-02 15:04:05")
 	return "[" + formattedTime + "]" + "[" + name + "]" + ":"
 }
 
@@ -50,7 +50,7 @@ func Status() {
 func loopAll(message, clientAddr string) {
 	for i, j := range clients {
 		if i != clientAddr {
-			if j.Name != "" {
+			if j.Name != "" && message != "" {
 				j.Conn.Write([]byte(message))
 			}
 		}
@@ -58,7 +58,7 @@ func loopAll(message, clientAddr string) {
 }
 
 // Function to display all connected clients
-func listClients() {
+func ListClients() {
 	clientsMutex.Lock()
 	defer clientsMutex.Unlock()
 
@@ -70,8 +70,8 @@ func listClients() {
 	}
 }
 
-func kickClient() {
-	listClients()
+func KickClient() {
+	ListClients()
 	fmt.Print("Enter the address of the client to kick: ")
 	var addrToKick string
 	fmt.Scanln(&addrToKick)
@@ -92,4 +92,11 @@ func kickClient() {
 	} else {
 		fmt.Println("Client not found.")
 	}
+}
+
+func KillServer(listener net.Listener) {
+	fmt.Println("Shutting down server in 10 seconds")
+	writeToClients("Server will shut down in 10 seconds...\n", "", false)
+	time.Sleep(10 * time.Second)
+	listener.Close()
 }

@@ -1,9 +1,11 @@
-package main
+package netcat
 
 import (
 	"fmt"
 	"os"
 )
+
+var port = GetPort()
 
 func PortChecker(port string) bool {
 	if len(port) > 5 || len(port) < 4 {
