@@ -8,9 +8,9 @@ import (
 )
 
 func main() {
-	port := GetPort()
+	GetPort()
 	// turncate the prev message file
-	file, _ := os.OpenFile("txtFiles/messageHistory.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0o644)
+	file, _ := os.OpenFile("txtFiles/messageHistory"+"["+port+"]"+".txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0o644)
 	file.Truncate(0)
 	///save start of new chat with time
 	now := time.Now()
@@ -35,7 +35,7 @@ func main() {
 				fmt.Println("Error accepting connection:", err)
 				continue
 			}
-			go handleServer(conn)
+			go handleClient(conn)
 		}
 	}()
 

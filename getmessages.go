@@ -17,6 +17,7 @@ var (
 	clientsMutex    sync.Mutex                   // Mutex to synchronize access to clients map
 	cooldownTime    = 1200 * time.Millisecond    // Cooldown duration
 	lastMessageTime = make(map[string]time.Time) // Track last message time per client
+	port            string
 )
 
 func geneateMessage(name string) string {
@@ -28,7 +29,7 @@ func geneateMessage(name string) string {
 func writeToClients(message string, clientAddr string, bl bool) {
 	if bl {
 		message = "\n" + geneateMessage(clients[clientAddr].Name) + message
-		SaveToFile("txtFiles/messageHistory.txt", message[1:])
+		SaveToFile("txtFiles/messageHistory"+"["+port+"]"+".txt", message[1:])
 	} else {
 		message = "\n" + clients[clientAddr].Name + message
 		SaveToFile("txtFiles/logs.txt", geneateMessage("Client Name: "+clients[clientAddr].Name+" || Client Adress "+clientAddr)+message[1:])

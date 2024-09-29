@@ -11,7 +11,7 @@ func SaveToFile(name, message string) {
 }
 
 func prevMessage() string {
-	data, _ := os.ReadFile("txtFiles/messageHistory.txt")
+	data, _ := os.ReadFile("txtFiles/messageHistory"+"["+port+"]"+".txt")
 	return string(data)
 }
 

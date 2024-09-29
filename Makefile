@@ -1,4 +1,4 @@
-NAME=tcpChat
+NAME=TCPChat
 
 PORT=$(firstword $(MAKECMDGOALS))
 

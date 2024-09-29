@@ -17,7 +17,8 @@ func PortChecker(port string) bool {
 	return true
 }
 
-func GetPort() (port string) {
+func GetPort() {
+	clientsMutex.Lock()
 	port = ":8989"
 	args := os.Args
 	if len(args) == 2 {
@@ -31,5 +32,5 @@ func GetPort() (port string) {
 		fmt.Println("[USAGE]: ./TCPChat $port")
 		os.Exit(0)
 	}
-	return
+	clientsMutex.Unlock()
 }
