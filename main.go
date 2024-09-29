@@ -4,25 +4,11 @@ import (
 	"fmt"
 	"net"
 	"os"
-	"strconv"
 	"time"
 )
 
-var port = ":8989"
-
 func main() {
-	if len(os.Args) == 2 {
-		_, e := strconv.Atoi(os.Args[1])
-		if e != nil {
-			fmt.Println("[USAGE]: ./TCPChat $port")
-			return
-		}
-		port = ":" + os.Args[1]
-	} else if len(os.Args) > 2 {
-		fmt.Println("[USAGE]: ./TCPChat $port")
-		return
-	}
-
+	port := GetPort()
 	// turncate the prev message file
 	file, _ := os.OpenFile("txtFiles/messageHistory.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0o644)
 	file.Truncate(0)
@@ -49,7 +35,7 @@ func main() {
 				fmt.Println("Error accepting connection:", err)
 				continue
 			}
-			go handleClient(conn)
+			go handleServer(conn)
 		}
 	}()
 
