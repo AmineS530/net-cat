@@ -1,6 +1,6 @@
 NAME=tcpChat
 
-PORT=$(firstword $(MAKECMDGOALS))
+PORT=$(firstword $(filter-out all build run clean,$(MAKECMDGOALS)))
 
 all: run
 	

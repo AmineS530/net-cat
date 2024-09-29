@@ -25,8 +25,8 @@ func geneateMessage(name string) string {
 	return "[" + formattedTime + "]" + "[" + name + "]" + ":"
 }
 
-func writeToClients(message string, clientAddr string, bl bool) {
-	if bl {
+func writeToClients(message string, clientAddr string, flag bool) {
+	if flag {
 		message = "\n" + geneateMessage(clients[clientAddr].Name) + message
 		SaveToFile("txtFiles/messageHistory.txt", message[1:])
 	} else {
@@ -65,21 +65,18 @@ func listClients() {
 	fmt.Println("Connected clients:")
 	id := 0
 	for addr := range clients {
-		fmt.Printf("[%d] username: %s | Client Address: %s \n", +id, clients[addr].Name, addr)
+		fmt.Printf("[%d] username: [%s] | Client Address: [%s] \n", +id, clients[addr].Name, addr)
 		id++
 	}
 }
 
 func kickClient() {
 	listClients()
-	fmt.Print("Enter the username of the client to kick: ")
-	var username string
-	fmt.Scanln(&username)
-
+	fmt.Print("Enter the address of the client to kick: ")
 	var addrToKick string
+	fmt.Scanln(&addrToKick)
 	for addr, client := range clients {
-		if client.Name == username {
-			addrToKick = addr
+		if addr == addrToKick {
 			client.Conn.Write([]byte("You have been kicked from the chat.\n"))
 			break
 		}
@@ -87,10 +84,11 @@ func kickClient() {
 
 	if addrToKick != "" {
 		// Close the client's connection
+		kickedUser := clients[addrToKick].Name
 		clients[addrToKick].Conn.Close()
 		delete(clients, addrToKick)
-		writeToClients(fmt.Sprintf("%s was kicked from the chat...\n", username), "", false)
-		fmt.Printf("Kicked client: %s\n", username)
+		writeToClients(fmt.Sprintf("%s was kicked from the chat...\n", kickedUser), "", false)
+		fmt.Printf("Kicked client: %s\n", kickedUser)
 	} else {
 		fmt.Println("Client not found.")
 	}

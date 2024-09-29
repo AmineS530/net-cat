@@ -45,13 +45,13 @@ func handleClient(conn net.Conn) {
 
 	clients[clientAddr].Conn.Write([]byte(prevMessage()))
 
-	bl := true
+	flag := true
 	for {
 		// check for empty message
-		if bl {
+		if flag {
 			Status()
 		}
-		bl = true
+		flag = true
 		// Read data until newline or EOF (you can modify the delimiter if needed)
 		message, err := reader.ReadString('\n')
 		if err != nil {
@@ -63,7 +63,7 @@ func handleClient(conn net.Conn) {
 
 		if len(message) == 1 {
 			conn.Write([]byte("Empty message was not sent\n" + geneateMessage(clients[clientAddr].Name)))
-			bl = false
+			flag = false
 		} else {
 			clientsMutex.Lock()
 			lastSentTime, ok := lastMessageTime[clientAddr]
@@ -75,12 +75,12 @@ func handleClient(conn net.Conn) {
 				} else {
 					conn.Write([]byte("Invalid input. Please try again.\n" +
 						geneateMessage(clients[clientAddr].Name)))
-					bl = false
+					flag = false
 				}
 			} else {
 				conn.Write([]byte("You are sending messages too quickly. Please wait a moment.\n" +
 					geneateMessage(clients[clientAddr].Name)))
-				bl = false
+				flag = false
 			}
 			clientsMutex.Unlock()
 		}
