@@ -28,7 +28,7 @@ func geneateMessage(name string) string {
 func writeToClients(message string, clientAddr string, flag bool) {
 	if flag {
 		message = "\n" + geneateMessage(clients[clientAddr].Name) + message
-		SaveToFile("txtFiles/messageHistory.txt", message[1:])
+		SaveToFile("txtFiles/messageHistory_["+port+"].txt", message[1:])
 	} else {
 		message = "\n" + clients[clientAddr].Name + message
 		SaveToFile("txtFiles/logs.txt", geneateMessage("Client Name: "+clients[clientAddr].Name+" || Client Adress "+clientAddr)+message[1:])

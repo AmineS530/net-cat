@@ -181,7 +181,7 @@ The Net-Cat project includes functionality to save chat history and logs. Hereâ€
 
 ### Message History
 
-- **History File**: `messageHistory.txt`
+- **History File**: `messageHistory_[port].txt`
 - **Description**: This file stores all previous messages sent in the chat. When a new client joins, they receive the entire chat history from this file, ensuring they are updated with all past communications.
 
 ---

@@ -7,7 +7,7 @@ import (
 
 // Clears the previous message file by truncating it
 func ClearMessageHistory() {
-	file, _ := os.OpenFile("txtFiles/messageHistory.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0o644)
+	file, _ := os.OpenFile("txtFiles/messageHistory_["+port+"].txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0o644)
 	file.Truncate(0)
 }
 
@@ -24,7 +24,7 @@ func SaveToFile(name, message string) {
 }
 
 func prevMessage() string {
-	data, _ := os.ReadFile("txtFiles/messageHistory.txt")
+	data, _ := os.ReadFile("txtFiles/messageHistory_[" + port + "].txt")
 	return string(data)
 }
 
